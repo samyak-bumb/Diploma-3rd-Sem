@@ -1,0 +1,196 @@
+{
+  "Standard Starter Template": {
+    "prefix": "sst",
+    "body": [
+      "#include <stdio.h>\n",
+      "int main (int argc, char *argv[]) {",
+      "\treturn 0;",
+      "}"
+    ]
+  },
+  "Stdlib Variant Starter Template": {
+    "prefix": "libsst",
+    "body": [
+      "#include <stdio.h>",
+      "#include <stdlib.h>\n",
+      "int main (int argc, char *argv[]) {",
+      "\treturn EXIT_SUCCESS;",
+      "}"
+    ]
+  },
+  "If statement": {
+    "prefix": "if",
+    "body": [
+      "if ($0) {",
+      "\t/* code here */ ",
+      "}"
+    ]
+  },
+  "Else if statement": {
+    "prefix": "elif",
+    "body": [
+      "else if ($0) {",
+      "\t/* code here */ ",
+      "}"
+    ]
+  },
+  "Else statement": {
+    "prefix": "else",
+    "body": [
+      "else {",
+      "\t/* code here */ ",
+      "}"
+    ]
+  },
+  "For loop": {
+    "prefix": "for",
+    "body": [
+      "for (int i = 0; i < $0; i++) {",
+      "\t/* code here */ ",
+      "}"
+    ]
+  },
+  "While loop": {
+    "prefix": "while",
+    "body": [
+      "while ($0) {",
+      "\t/* code here */ ",
+      "}"
+    ]
+  },
+  "Do...while loop": {
+    "prefix": "dowhile",
+    "body": [
+      "do {",
+      "\t/* code here */ ",
+      "} while($0)"
+    ]
+  },
+  "Create linked list": {
+    "prefix": "clist",
+    "body": [
+      "typedef struct _node * Link;",
+      "typedef struct _node node;",
+      "struct _node {",
+      "\tint value;",
+      "\tLink next;",
+      "};"
+    ]
+  },
+  "Create int function": {
+    "prefix": "intfunc",
+    "body": [
+      "int $1 () {",
+      "\tint $0;",
+      "\treturn $0;",
+      "}"
+    ]
+  },
+  "Create float function": {
+    "prefix": "flfunc",
+    "body": [
+      "float $2 () {",
+      "\tfloat $0;",
+      "\treturn $0;",
+      "}"
+    ]
+  },
+  "Create double function": {
+    "prefix": "doubfunc",
+    "body": [
+      "double $2 () {",
+      "\tdouble $0;",
+      "\treturn $0;",
+      "}"
+    ]
+  },
+  "Create string function": {
+    "prefix": "strfunc",
+    "body": [
+      "char[] $1 () {",
+      "\tchar[] $0 = {};",
+      "\treturn $0;",
+      "}"
+    ]
+  },
+  "Create long function": {
+    "prefix": "longfunc",
+    "body": [
+      "long $1 () {",
+      "\tlong $0;",
+      "\treturn $0;",
+      "}"
+    ]
+  },
+  "Create definition for virtual table": {
+    "prefix": "vtdef",
+    "body": [
+      "typedef struct ${1:ClassName}{",
+      "\tstruct ${2:$1VT}* vt;    ",
+      "};\n",
+      "typedef struct $2",
+      "{",
+      "\t// Virtual Table Function definitions",
+      "} ${3:vt$1};\n",
+      "int $1Init(struct $1 *self);",
+      "int $1Destroy(struct $1 **self);"
+    ]
+  },
+  "Create function for virtual table": {
+    "prefix": "vtfunc",
+    "body": [
+      "${1:void} (*${2:functionName})(struct ${3:ClassName} *self)"
+    ]
+  },
+  "Print variable of type float (2 decimal places)": {
+    "prefix": "pflo",
+    "body": [
+      "printf(\"$0 :>> %.2f\\n\", $0);"
+    ]
+  },
+  "Print variable of type integer": {
+    "prefix": "pint",
+    "body": [
+      "printf(\"$0 :>> %d\\n\", $0);"
+    ]
+  },
+  "Print variable of type char": {
+    "prefix": "pcha",
+    "body": [
+      "printf(\"$0 :>> %c\\n\", $0);"
+    ]
+  },
+  "Print variable of type pointer": {
+    "prefix": "ppoint",
+    "body": [
+      "printf(\"$0 :>> %p\\n\", (void *) $0);"
+    ]
+  },
+  "Print variable of type size_t": {
+    "prefix": "psiz",
+    "body": [
+      "printf(\"$0 :>> %zu\\n\", $0);"
+    ]
+  },
+  "Allocate memory using calloc": {
+    "prefix": "cal",
+    "body": [
+      "$1*ptr = ($1*)calloc($2, sizeof($1));\n",
+      "if (ptr == NULL)",
+      "{",
+      "  printf(\"Memory allocation failed!\\n\");",
+      "  exit(0);",
+      "}\n",
+      "free(ptr);"
+    ]
+  },
+  "Creates a header include guard": {
+    "prefix": "ig",
+    "body": [
+      "#ifndef ${TM_FILENAME/(?:^.*\\\\)?(\\w+)\\W?/${1:/upcase}_/g}",
+      "#define ${TM_FILENAME/(?:^.*\\\\)?(\\w+)\\W?/${1:/upcase}_/g}\n",
+      "// Code for header body\n",
+      "#endif //${TM_FILENAME/(?:^.*\\\\)?(\\w+)\\W?/${1:/upcase}_/g}"
+    ]
+  }
+}
