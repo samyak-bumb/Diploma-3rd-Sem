@@ -1,2 +1,4 @@
 # Ignore all .exe files
 *.exe
+# Removing py because created a new repo for it
+Python/
